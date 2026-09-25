@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  --bg: #050505;
+  --bg-secondary: #0B0B0D;
+  --surface: #111216;
+  --surface-2: #181A20;
+  --surface-elevated: #16181D;
+  --text: #F5F7FA;
+  --muted: #9297A1;
+  --muted-strong: #B4B8C1;
+  --accent: #3B82F6;
+  --accent-pressed: #2563EB;
+  --accent-soft: rgba(59,130,246,.12);
+  --success: #34D399;
+  --success-soft: rgba(52,211,153,.12);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245,158,11,.12);
+  --danger: #F87171;
+  --border: rgba(255,255,255,.07);
+  --border-strong: rgba(255,255,255,.13);
+  --nav: rgba(5,5,5,.90);
+}
+
+:root.light {
+  color-scheme: light;
+  --bg: #F4F6F9;
+  --bg-secondary: #ECEFF3;
+  --surface: #FFFFFF;
+  --surface-2: #F0F2F5;
+  --surface-elevated: #FFFFFF;
+  --text: #101318;
+  --muted: #737985;
+  --muted-strong: #535A66;
+  --accent: #2563EB;
+  --accent-pressed: #1D4ED8;
+  --accent-soft: rgba(37,99,235,.10);
+  --success: #16A36D;
+  --success-soft: rgba(22,163,109,.10);
+  --warning: #C77B06;
+  --warning-soft: rgba(199,123,6,.10);
+  --danger: #DC5252;
+  --border: rgba(14,18,25,.08);
+  --border-strong: rgba(14,18,25,.14);
+  --nav: rgba(244,246,249,.90);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { min-width: 320px; background: var(--bg); scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--bg); color: var(--text); text-rendering: optimizeLegibility; }
+button, input, select, textarea { font: inherit; }
+button { touch-action: manipulation; }
+input, select, textarea { color-scheme: inherit; }
+::selection { background: rgba(59,130,246,.28); }
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-thumb { background: rgba(146,151,161,.24); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .surface { @apply rounded-[20px] border; background: var(--surface); border-color: var(--border); }
+  .surface-soft { @apply rounded-2xl border; background: var(--surface-2); border-color: var(--border); }
+  .focus-ring { @apply outline-none focus-visible:ring-2 focus-visible:ring-offset-2; --tw-ring-color: var(--accent); --tw-ring-offset-color: var(--bg); }
+  .tap { @apply transition-transform duration-150 active:scale-[0.98]; }
+
+  .eyebrow { @apply text-[10px] font-semibold uppercase tracking-[.16em] text-[var(--muted)]; }
+  .page-title { @apply mt-1 text-[28px] font-semibold tracking-[-.045em] sm:text-[30px]; }
+  .field-label { @apply mb-2 block text-xs font-semibold text-[var(--muted)]; }
+  .field { @apply w-full rounded-[14px] border px-3.5 py-3 text-[14px] outline-none transition; background: var(--surface-2); border-color: var(--border); color: var(--text); }
+  .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  .primary-icon-button { @apply focus-ring tap grid h-12 w-12 shrink-0 place-items-center rounded-[15px] bg-[var(--accent)] text-white; box-shadow: 0 10px 28px rgba(37,99,235,.18); }
+  .nav-arrow { @apply focus-ring tap grid h-11 w-11 shrink-0 place-items-center rounded-[14px] border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]; }
+  .primary-action { @apply focus-ring tap flex items-center justify-center gap-2 rounded-[14px] bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-white; }
+  .secondary-action { @apply focus-ring tap flex min-h-11 items-center justify-center gap-2 rounded-[14px] border border-[var(--border)] bg-[var(--surface-2)] px-3 text-xs font-semibold text-[var(--text)]; }
+  .danger-action { @apply focus-ring tap flex min-h-11 items-center justify-center gap-2 rounded-[14px] border px-3 text-xs font-semibold; border-color: rgba(248,113,113,.18); background: rgba(248,113,113,.08); color: var(--danger); }
+  .mini-add { @apply focus-ring tap flex min-h-9 items-center gap-1 rounded-xl bg-[var(--accent-soft)] px-2.5 text-[11px] font-semibold text-[var(--accent)]; }
+
+  .segmented { @apply grid grid-cols-2 gap-1 rounded-[14px] border p-1; background: var(--bg-secondary); border-color: var(--border); }
+  .segmented > button { @apply focus-ring tap min-h-9 rounded-[10px] px-3 text-xs font-semibold text-[var(--muted)] transition; }
+  .segmented > .segmented-active { background: var(--surface-elevated); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+
+  .day-chip { @apply focus-ring tap min-h-10 rounded-xl border px-2 text-[10px] font-semibold text-[var(--muted)]; background: var(--surface-2); border-color: var(--border); }
+  .day-chip-active { background: var(--accent-soft); border-color: rgba(59,130,246,.42); color: var(--accent); }
+
+  .badge { @apply shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold text-[var(--muted)]; background: var(--surface-2); }
+  .today-pill { @apply rounded-full px-2 py-0.5 text-[9px] font-semibold tracking-[.08em] text-[var(--accent)]; background: var(--accent-soft); }
+
+  .task-row { @apply flex min-h-[72px] items-center gap-3 px-3.5 py-3 transition-colors; background: var(--surface); }
+  .task-row-complete { background: color-mix(in srgb, var(--surface) 70%, var(--bg)); }
+  .week-task-row { @apply flex min-h-[67px] items-center gap-3 px-3 py-2.5 transition-colors; background: var(--surface); }
+  .week-task-row-complete { background: color-mix(in srgb, var(--surface) 72%, var(--bg)); }
+  .task-check { @apply grid h-10 w-10 shrink-0 place-items-center rounded-[12px] border text-transparent transition; border-color: var(--border-strong); background: var(--surface-2); }
+  .task-check-complete { border-color: var(--success); background: var(--success); color: #062719; box-shadow: 0 0 0 3px var(--success-soft); }
+
+  .week-day-strip { @apply grid grid-cols-7 gap-1 overflow-hidden rounded-[18px] border p-1; background: var(--bg-secondary); border-color: var(--border); }
+  .week-day-tab { @apply focus-ring tap flex min-h-[68px] min-w-0 flex-col items-center justify-center rounded-[13px] text-[var(--muted)] transition; }
+  .week-day-tab-active { background: var(--surface-elevated); color: var(--text); box-shadow: 0 3px 12px rgba(0,0,0,.18); }
+  .day-section { @apply min-w-0; }
+
+  .settings-row { @apply flex min-h-[54px] items-center gap-3 px-4 py-3; }
+  .settings-row:hover { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
+  .toggle { @apply relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition; background: var(--surface-2); border: 1px solid var(--border-strong); }
+  .toggle > span { @apply ml-1 h-5 w-5 rounded-full bg-[var(--muted)] transition-transform; }
+  .toggle-on { background: var(--accent); border-color: var(--accent); }
+  .toggle-on > span { @apply translate-x-5 bg-white; }
+
+  .floating-add { @apply focus-ring tap fixed right-4 z-20 grid h-14 w-14 place-items-center rounded-[17px] bg-[var(--accent)] text-white md:hidden; bottom: calc(148px + env(safe-area-inset-bottom)); box-shadow: 0 14px 34px rgba(37,99,235,.24); }
+  .timer-dock { @apply fixed left-3 right-3 z-[29] flex min-h-[58px] items-center gap-3 rounded-[18px] border px-3 py-2 md:left-[276px] md:right-5 md:max-w-xl; bottom: calc(76px + env(safe-area-inset-bottom)); background: rgba(17,18,22,.96); border-color: var(--border-strong); box-shadow: 0 16px 36px rgba(0,0,0,.28); backdrop-filter: blur(18px); }
+  :root.light .timer-dock { background: rgba(255,255,255,.96); }
+}
+
+@media (min-width: 768px) {
+  .timer-dock { bottom: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
