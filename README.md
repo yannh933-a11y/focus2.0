@@ -64,3 +64,10 @@ O estado principal fica no IndexedDB. A versão 2 inclui migração dos dados da
 A permissão só é solicitada quando o usuário ativa lembretes. Sem backend, lembretes locais são tratados enquanto a aplicação está ativa; push agendado confiável com o app totalmente encerrado fica preparado para uma evolução futura.
 
 Veja `ARCHITECTURE.md` para as decisões de arquitetura.
+
+
+## Atualização 2.0.1
+
+- Removida a transição de página que podia causar piscadas pretas ao trocar entre Hoje, Semana, Progresso e Ajustes.
+- Adicionada a opção **Cronômetro** em qualquer atividade ou rotina. O cronômetro deixa de depender da categoria Estudos.
+- Dados existentes são migrados sem apagar histórico; atividades de Estudos antigas mantêm cronômetro habilitado automaticamente.

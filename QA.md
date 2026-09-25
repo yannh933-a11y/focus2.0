@@ -18,3 +18,15 @@
 ## Build de dependências
 
 O ambiente de geração não conseguiu resolver `registry.npmjs.org` (DNS), portanto `npm install` e o build completo do Vite não puderam ser executados aqui. O projeto inclui os scripts `npm run typecheck` e `npm run build` para a validação final em uma máquina com acesso ao npm/Vercel.
+
+
+## Patch 2.0.1
+
+- Troca de abas agora é instantânea, sem `AnimatePresence`/fade-out, eliminando o intervalo preto entre páginas.
+- `timerEnabled` foi adicionado a rotinas e instâncias.
+- O formulário permite ligar/desligar cronômetro por atividade.
+- Rotinas podem carregar essa preferência para as instâncias futuras.
+- Dados antigos são migrados: atividades de Estudos mantêm cronômetro habilitado por compatibilidade.
+- Cronômetros de atividades não classificadas como Estudos registram duração real na tarefa, mas não entram nas métricas de estudo.
+- Validação sintática: 30 arquivos TS/TSX, 0 diagnósticos de sintaxe.
+- `npm install` não concluiu neste ambiente dentro do timeout; o build completo deve ser confirmado na Vercel, que já compilou a versão 2.0.0 com a mesma base de dependências.
